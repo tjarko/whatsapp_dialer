@@ -36,10 +36,10 @@ export default function Home() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-md">
-      <h1 className="text-2xl font-bold text-center mb-8">WhatsApp Dialer</h1>
+    <div className="container mx-auto px-4 py-4 max-w-md h-[90vh] flex flex-col">
+      <h1 className="text-2xl font-bold text-center mb-4">WhatsApp Dialer</h1>
       
-      <div className="bg-white rounded-lg shadow-lg p-6 space-y-6">
+      <div className="bg-white rounded-lg shadow-lg p-4 space-y-4 flex-grow">
         <PhoneInput
           value={phoneNumber}
           onChange={setPhoneNumber}
