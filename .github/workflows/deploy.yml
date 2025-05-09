@@ -28,7 +28,7 @@ jobs:
       # ✅ new major—uses upload-artifact v4 internally
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./build          # ← adjust to your output folder
+          path: ./out            # ← correct for Next.js static export
 
   deploy:
     needs: build
