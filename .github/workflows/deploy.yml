@@ -2,46 +2,37 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:
+    branches: [ main ]         # or your default branch
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
+  contents: read               # allow checkout
+  pages: write                 # allow page deployment
+  id-token: write              # OIDC token for deploy-pages v4
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+    steps:
+      # 1  Checkout code
+      - uses: actions/checkout@v4
+
+      # 2  Set up Node (cache enabled)
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build
+      # 3  Install deps & build
+      - run: npm ci
+      - run: npm run build
         env:
-          GITHUB_ACTIONS: true
+          GITHUB_ACTIONS: true       # if your Svelte/Next config checks this
 
-      - name: Package site for Pages
-        uses: actions/upload-pages-artifact@v2
+      # 4  Package site for Pages (NEW major)
+      - uses: actions/upload-pages-artifact@v2
         with:
-          path: ./out
+          path: ./build              # ← adjust to your output folder
 
   deploy:
     needs: build
@@ -50,6 +41,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
+    # 5  Publish to the CDN (NEW major)
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4 
+        uses: actions/deploy-pages@v4
