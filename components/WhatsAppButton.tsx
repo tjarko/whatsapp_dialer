@@ -4,13 +4,11 @@ import React from 'react'
 
 interface WhatsAppButtonProps {
   phoneNumber: string
-  countryCode: string
 }
 
-export default function WhatsAppButton({ phoneNumber, countryCode }: WhatsAppButtonProps) {
+export default function WhatsAppButton({ phoneNumber }: WhatsAppButtonProps) {
   const handleClick = () => {
-    const fullNumber = countryCode + phoneNumber
-    const whatsappUrl = `https://wa.me/${fullNumber.replace(/[^0-9]/g, '')}`
+    const whatsappUrl = `https://wa.me/${phoneNumber.replace(/[^0-9]/g, '')}`
     window.open(whatsappUrl, '_blank')
   }
 
