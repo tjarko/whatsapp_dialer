@@ -36,7 +36,7 @@ export default function Keypad({ onKeyPress, onDelete, isVisible = true, onToggl
             key={digit}
             type="button"
             onClick={() => digit === '←' ? onDelete() : onKeyPress(digit)}
-            className="aspect-square flex items-center justify-center text-2xl font-medium bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="aspect-square flex items-center justify-center text-xl font-medium bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             {digit}
           </button>
