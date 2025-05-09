@@ -13,11 +13,11 @@ export default function Keypad({ onKeyPress, onDelete, isVisible = true, onToggl
   const digits = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#', '+', '←']
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-2">
       <button
         type="button"
         onClick={onToggle}
-        className="md:hidden w-full py-2 px-4 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 font-medium flex items-center justify-center gap-2"
+        className="md:hidden w-full py-1.5 px-4 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 font-medium flex items-center justify-center gap-2"
       >
         {isVisible ? 'Hide Keypad' : 'Show Keypad'}
         <svg
@@ -30,7 +30,7 @@ export default function Keypad({ onKeyPress, onDelete, isVisible = true, onToggl
         </svg>
       </button>
 
-      <div className={`grid grid-cols-3 gap-4 ${!isVisible ? 'hidden md:grid' : ''}`}>
+      <div className={`grid grid-cols-3 gap-2 ${!isVisible ? 'hidden md:grid' : ''}`}>
         {digits.map((digit) => (
           <button
             key={digit}
